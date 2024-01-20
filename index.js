@@ -13,29 +13,43 @@ function playRound(playerSelection, computerSelection) {
 
         case "rock":
             if (computerSelection === "scissors") {
-                return "You Win! Rock beats Scissors";
+                console.log("You Win! Rock beats Scissors");
+                break;
             } else if (computerSelection === "paper") {
-                return "You Lose! Paper beats Rock";
+                console.log("You Lose! Paper beats Rock");
+                break;
             } else {
-                return "A Tie!";
+                console.log("A Tie! Replaying round");
+                playRound(prompt("Your turn"), getComputerChoice());
+                break;
             }
 
         case "paper":
             if (computerSelection === "rock") {
-                return "You Win! Paper beats Rock";
+                console.log("You Win! Paper beats Rock");
+                break;
             } else if (computerSelection === "scissors") {
-                return "You Lose! Scissors beat Paper";
+                console.log("You Lose! Scissors beat Paper");
+                break;
             } else {
-                return "A Tie!";
+                console.log("A Tie! Replaying round");
+                playRound(prompt("Your turn"), getComputerChoice());
+                break;
             }
 
         case "scissors":
             if (computerSelection === "paper") {
-                return "You Win! Scissors beat Paper";
+                console.log("You Win! Scissors beat Paper");
+                break;
             } else if (computerSelection === "rock") {
-                return "You Lose! Rock beats Scissors";
+                console.log("You Lose! Rock beats Scissors");
+                break;
             } else {
-                return "A Tie!";
+                console.log("A Tie! Replaying round");
+                playRound(prompt("Your turn"), getComputerChoice());
+                break;
             }
     }
 }
+
+playRound(prompt("Your turn"), getComputerChoice());
