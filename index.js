@@ -9,47 +9,71 @@ function randomInteger(min, max) {
 }
 
 function playRound(playerSelection, computerSelection) {
+    console.log(playerScore);
+    console.log(computerScore);
     switch (playerSelection.toLowerCase()) {
 
         case "rock":
             if (computerSelection === "scissors") {
-                console.log("You Win! Rock beats Scissors");
+                alert("You Win! Rock beats Scissors");
+                playerScore++;
                 break;
             } else if (computerSelection === "paper") {
-                console.log("You Lose! Paper beats Rock");
+                alert("You Lose! Paper beats Rock");
+                computerScore++;
                 break;
             } else {
-                console.log("A Tie! Replaying round");
+                alert("A Tie! Replaying round");
                 playRound(prompt("Your turn"), getComputerChoice());
                 break;
             }
 
         case "paper":
             if (computerSelection === "rock") {
-                console.log("You Win! Paper beats Rock");
+                alert("You Win! Paper beats Rock");
+                playerScore++;
                 break;
             } else if (computerSelection === "scissors") {
-                console.log("You Lose! Scissors beat Paper");
+                alert("You Lose! Scissors beat Paper");
+                computerScore++;
                 break;
             } else {
-                console.log("A Tie! Replaying round");
+                alert("A Tie! Replaying round");
                 playRound(prompt("Your turn"), getComputerChoice());
                 break;
             }
 
         case "scissors":
             if (computerSelection === "paper") {
-                console.log("You Win! Scissors beat Paper");
+                alert("You Win! Scissors beat Paper");
+                playerScore++;
                 break;
             } else if (computerSelection === "rock") {
-                console.log("You Lose! Rock beats Scissors");
+                alert("You Lose! Rock beats Scissors");
+                computerScore++;
                 break;
             } else {
-                console.log("A Tie! Replaying round");
+                alert("A Tie! Replaying round");
                 playRound(prompt("Your turn"), getComputerChoice());
                 break;
             }
     }
 }
 
-playRound(prompt("Your turn"), getComputerChoice());
+function game() {
+    while (playerScore < 3 && computerScore < 3) {
+        playRound(prompt("Your turn"), getComputerChoice());
+        alert(`Current score: ${playerScore} - ${computerScore}`);
+    }
+
+    if (playerScore === 3) {
+        alert(`You have Won! Final score: ${playerScore} - ${computerScore}`);
+    } else if (computerScore === 3) {
+        alert(`You have Lost! Final score: ${playerScore} - ${computerScore}`);
+    }
+}
+
+let playerScore = 0;
+let computerScore = 0;
+
+game();
