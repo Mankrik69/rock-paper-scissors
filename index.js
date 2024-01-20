@@ -9,8 +9,6 @@ function randomInteger(min, max) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(playerScore);
-    console.log(computerScore);
     switch (playerSelection.toLowerCase()) {
 
         case "rock":
