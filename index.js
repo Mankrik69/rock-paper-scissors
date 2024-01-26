@@ -63,9 +63,9 @@ function game() {
         message.textContent = playRound(e.target.id, getComputerChoice());
         score.textContent = `Current score: ${playerScore} - ${computerScore}`;
 
-        if (playerScore === 3) {
+        if (playerScore === 5) {
             message.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
-        } else if (computerScore === 3) {
+        } else if (computerScore === 5) {
             message.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
         }
     })
