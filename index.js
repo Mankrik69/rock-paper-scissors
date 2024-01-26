@@ -46,21 +46,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    choice.addEventListener("click", (e) => {
-        message.textContent = playRound(e.target.id, getComputerChoice());
-        score.textContent = `Current score: ${playerScore} - ${computerScore}`;
-
-        if (playerScore === 5) {
-            score.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
-            restart();
-        } else if (computerScore === 5) {
-            score.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
-            restart();
-        }
-    })
-}
-
 function restart() {
     Array.from(choice.children).forEach(button => {
         button.disabled = true;
@@ -83,6 +68,23 @@ function restart() {
         })
 
         container.removeChild(restart);
+    })
+}
+
+function game() {
+    Array.from(choice.children).forEach(button => {
+        button.addEventListener("click", () => {
+            message.textContent = playRound(button.id, getComputerChoice());
+            score.textContent = `Current score: ${playerScore} - ${computerScore}`;
+
+            if (playerScore === 5) {
+                score.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
+                restart();
+            } else if (computerScore === 5) {
+                score.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
+                restart();
+            }
+        })
     })
 }
 
