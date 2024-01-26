@@ -9,55 +9,53 @@ function randomInteger(min, max) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    switch (playerSelection.toLowerCase()) {
+    switch (playerSelection) {
 
         case "rock":
             if (computerSelection === "scissors") {
-                // alert("You Win! Rock beats Scissors");
+                return "You Win! Rock beats Scissors";
                 // playerScore++;
-                break;
             } else if (computerSelection === "paper") {
-                // alert("You Lose! Paper beats Rock");
+                return "You Lose! Paper beats Rock";
                 // computerScore++;
-                break;
             } else {
-                // alert("A Tie! Replaying round");
+                return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
-                break;
             }
 
         case "paper":
             if (computerSelection === "rock") {
-                // alert("You Win! Paper beats Rock");
+                return "You Win! Paper beats Rock";
                 // playerScore++;
-                break;
             } else if (computerSelection === "scissors") {
-                // alert("You Lose! Scissors beat Paper");
+                return "You Lose! Scissors beat Paper";
                 // computerScore++;
-                break;
             } else {
-                // alert("A Tie! Replaying round");
+                return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
-                break;
             }
 
         case "scissors":
             if (computerSelection === "paper") {
-                // alert("You Win! Scissors beat Paper");
+                return "You Win! Scissors beat Paper";
                 // playerScore++;
-                break;
             } else if (computerSelection === "rock") {
-                // alert("You Lose! Rock beats Scissors");
+                return "You Lose! Rock beats Scissors";
                 // computerScore++;
-                break;
             } else {
-                // alert("A Tie! Replaying round");
+                return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
-                break;
             }
     }
 }
 
+
+const choice = document.querySelector("#choice");
+const text = document.querySelector("#text");
+
+choice.addEventListener("click", (e) => {
+    text.textContent = playRound(e.target.id, getComputerChoice());
+})
 
 // function game() {
 //     while (playerScore < 3 && computerScore < 3) {
