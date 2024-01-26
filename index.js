@@ -20,7 +20,6 @@ function playRound(playerSelection, computerSelection) {
                 return "You Lose! Paper beats Rock";
             } else {
                 return "A Tie! Replaying round";
-                // playRound(prompt("Your turn"), getComputerChoice());
             }
 
         case "paper":
@@ -32,7 +31,6 @@ function playRound(playerSelection, computerSelection) {
                 return "You Lose! Scissors beat Paper";
             } else {
                 return "A Tie! Replaying round";
-                // playRound(prompt("Your turn"), getComputerChoice());
             }
 
         case "scissors":
@@ -44,19 +42,9 @@ function playRound(playerSelection, computerSelection) {
                 return "You Lose! Rock beats Scissors";
             } else {
                 return "A Tie! Replaying round";
-                // playRound(prompt("Your turn"), getComputerChoice());
             }
     }
 }
-
-
-const choice = document.querySelector("#choice");
-const message = document.querySelector("#message");
-const score = document.querySelector("#score");
-
-let playerScore = 0;
-let computerScore = 0;
-
 
 function game() {
     choice.addEventListener("click", (e) => {
@@ -64,11 +52,46 @@ function game() {
         score.textContent = `Current score: ${playerScore} - ${computerScore}`;
 
         if (playerScore === 5) {
-            message.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
+            score.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
+            restart();
         } else if (computerScore === 5) {
-            message.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
+            score.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
+            restart();
         }
     })
 }
+
+function restart() {
+    Array.from(choice.children).forEach(button => {
+        button.disabled = true;
+    })
+
+    const restart = document.createElement("div");
+    const playAgain = document.createElement("button");
+    playAgain.textContent = "Play again";
+    restart.appendChild(playAgain);
+    container.appendChild(restart);
+
+    playAgain.addEventListener("click", () => {
+        playerScore = 0;
+        computerScore = 0;
+        score.textContent = "Current score: 0 - 0";
+        message.textContent = "Your turn";
+
+        Array.from(choice.children).forEach(button => {
+            button.disabled = false;
+        })
+
+        container.removeChild(restart);
+    })
+}
+
+const container = document.querySelector(".container")
+const choice = document.querySelector("#choice");
+const message = document.querySelector("#message");
+const score = document.querySelector("#score");
+
+let playerScore = 0;
+let computerScore = 0;
 
 game();
