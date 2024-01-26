@@ -13,11 +13,11 @@ function playRound(playerSelection, computerSelection) {
 
         case "rock":
             if (computerSelection === "scissors") {
+                playerScore++;
                 return "You Win! Rock beats Scissors";
-                // playerScore++;
             } else if (computerSelection === "paper") {
+                computerScore++;
                 return "You Lose! Paper beats Rock";
-                // computerScore++;
             } else {
                 return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
@@ -25,11 +25,11 @@ function playRound(playerSelection, computerSelection) {
 
         case "paper":
             if (computerSelection === "rock") {
+                playerScore++;
                 return "You Win! Paper beats Rock";
-                // playerScore++;
             } else if (computerSelection === "scissors") {
+                computerScore++;
                 return "You Lose! Scissors beat Paper";
-                // computerScore++;
             } else {
                 return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
@@ -37,11 +37,11 @@ function playRound(playerSelection, computerSelection) {
 
         case "scissors":
             if (computerSelection === "paper") {
+                playerScore++;
                 return "You Win! Scissors beat Paper";
-                // playerScore++;
             } else if (computerSelection === "rock") {
+                computerScore++;
                 return "You Lose! Rock beats Scissors";
-                // computerScore++;
             } else {
                 return "A Tie! Replaying round";
                 // playRound(prompt("Your turn"), getComputerChoice());
@@ -51,26 +51,24 @@ function playRound(playerSelection, computerSelection) {
 
 
 const choice = document.querySelector("#choice");
-const text = document.querySelector("#text");
+const message = document.querySelector("#message");
+const score = document.querySelector("#score");
 
-choice.addEventListener("click", (e) => {
-    text.textContent = playRound(e.target.id, getComputerChoice());
-})
+let playerScore = 0;
+let computerScore = 0;
 
-// function game() {
-//     while (playerScore < 3 && computerScore < 3) {
-//         playRound(prompt("Your turn"), getComputerChoice());
-//         alert(`Current score: ${playerScore} - ${computerScore}`);
-//     }
 
-//     if (playerScore === 3) {
-//         alert(`You have Won! Final score: ${playerScore} - ${computerScore}`);
-//     } else if (computerScore === 3) {
-//         alert(`You have Lost! Final score: ${playerScore} - ${computerScore}`);
-//     }
-// }
+function game() {
+    choice.addEventListener("click", (e) => {
+        message.textContent = playRound(e.target.id, getComputerChoice());
+        score.textContent = `Current score: ${playerScore} - ${computerScore}`;
 
-// let playerScore = 0;
-// let computerScore = 0;
+        if (playerScore === 3) {
+            message.textContent = `You have Won! Final score: ${playerScore} - ${computerScore}`;
+        } else if (computerScore === 3) {
+            message.textContent = `You have Lost! Final score: ${playerScore} - ${computerScore}`;
+        }
+    })
+}
 
-// game();
+game();
